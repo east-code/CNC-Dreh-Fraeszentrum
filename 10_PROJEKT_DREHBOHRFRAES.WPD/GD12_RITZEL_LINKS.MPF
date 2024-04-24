@@ -1,0 +1,113 @@
+; Projekt Ritzel, linke Sete: 09_2_GD_RITZEL_LINKS.MPF
+; Rohteildefinition
+N1 WORKPIECE(,,,"PIPE",448,1,-38,-38,105,30)
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+; TAV 210.10 Plan- und Längsdrehen
+N3 T="DR_R0.8K95E80"  ; Werkzeug zum Plan- und zum Längsschruppen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=90
+N6 S327 LIMS=4000 M4 M8  ; Schnittbedingungen
+N7 G0 X120 Z2
+; Planschnitt
+N8 CYCLE951(105,1,-27,0,-27,0,1,2,0,0,12,0,0,0,1,0.35,1,2,1110000)
+N9 G0 X120 Z50           ; Rückzugsbewegung zur Kollisionsvermeidung
+; Längsschnitt
+N10 CYCLE951(105,0,104,-8,104,-8,1,2,0,0,11,1,0,0,1,0.35,1,2,1110000)
+; --- Stirnflächenfräs- und Bohrbearbeitung ---
+N11 G54 G17 G90 G94
+N12 SETMS(3)    ; Werkzeugspindel Nr 3 ist Hauptspindel
+N13 SPOS[1]=0   ; Werkstückspindel 1 in Ausgangsposition drehen (optional)
+N14 TRANSMIT    ; Stirnflächentransformation an
+N15 DIAMOF      ; Radienprogrammierung
+; TAV 20.50 Sechsecktasche (Sechsinnenkant) fräsen
+N16 T="FS_D10"    ;  Schaftfräser wird angetrieben
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_1.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N17 TC(1,0,0,1,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N18 B1=0
+N19 S3=630 F75 M3=3 M08  ; Schnittbedingungen
+N20 G0 Z50      ; Rückzug
+; Konturbeschreibung im Hauptprogramm (x=11.547, r=23.094)
+N21 E_LAB_A_SECHSECK: ;#SM Z:2
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G17 G90 DIAMOF;*GP*
+G0 X0 Y-20 ; Konturanfang ;*GP*
+G1 X11.547 RND=5 ;*GP*
+X23.094 Y0 RND=5 ;*GP*
+X11.547 Y20 RND=5 ;*GP*
+X-11.547 RND=5 ;*GP*
+X-23.094 Y0 RND=5 ;*GP*
+X-11.547 Y-20 RND=5 ;*GP*
+X0 ;*GP*
+;CON,0,0.0000,7,7,MST:0,0,AX:X,Y,I,J,CYL:1,0,10,TRANS:1;*GP*;*RO*;*HD*
+;S,EX:0,EY:-20;*GP*;*RO*;*HD*
+;LR,EX:11.547;*GP*;*RO*;*HD*
+;R,RROUND:5;*GP*;*RO*;*HD*
+;LA,EX:23.094,EY:0;*GP*;*RO*;*HD*
+;R,RROUND:5;*GP*;*RO*;*HD*
+;LA,EX:11.547,EY:20;*GP*;*RO*;*HD*
+;R,RROUND:5;*GP*;*RO*;*HD*
+;LL,EX:-11.547;*GP*;*RO*;*HD*
+;R,RROUND:5;*GP*;*RO*;*HD*
+;LA,EX:-23.094,EY:0;*GP*;*RO*;*HD*
+;R,RROUND:5;*GP*;*RO*;*HD*
+;LA,EX:-11.547,EY:-20;*GP*;*RO*;*HD*
+;R,RROUND:5;*GP*;*RO*;*HD*
+;LR,EX:0;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_SECHSECK:
+; Kontur aktivieren
+N22 CYCLE62("SECHSECK",1,,)
+; Sechsecktasche fräsen
+N23 CYCLE63("SECHSECKTASCHE",10001,100,0,1,-8,100,0.35,50,4,0,0,0,0,0,2,2,15,1,2,"",1,,0,101,110)
+; TAV 20.60 Gewindebohrungen fertigen
+; 20.60.10 Kernloch bohren
+N24 T="BS_D6.5_VHM" ; Hartmetallbohrer
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_b1_1.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N25 TC(1,0,0,1,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N26 B1=0 ; Axiale Werkzeuglage
+N27 S3=5000 F360 M3=3 M08
+; Bohrzyklus für mehrere Positionen definieren
+N28 MCALL CYCLE82(20,0,2,,-8.5,0.6,10,1,11,11000,1,50,2,50)
+; Positionsmuster definieren und Bohren
+N29 Teilkreis: HOLES2(0,0,45,0,30,4,1010,0,,,1)
+N30 MCALL ; Mehrfachaufruf aus
+N31 G0 Z100 ; Rückzug ggf. zum Werkzeugwechsel
+;TAV 20.60.20 Senken
+N32 T="BSe_D10A90" ; 90°-Senker, HSS
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_1.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N33 TC(1,0,0,1,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N34 B1=0 ; Axiale Werkzeuglage
+N35 S3=450 F50 M3=3 M08 ; Schnittbedingungen
+; Zyklus zum Zentrieren hier zum Kegelsenken
+N36 MCALL CYCLE81(20,0,1,8.2,,0.6,10,1,11)
+; Wiederholter Aufruf des Positionsmusters und senken
+N37 REPEATB Teilkreis ;#SM
+N38 MCALL ; Mehrfachaufruf aus
+;TAV 20.60.30 Gewinde fertigen M8
+N39 T="BG_M8" ; Gewindebohrer M8, HSS
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_1.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N40 TC(1,0,0,1,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N41 B1=0
+N42 S3=450 F750 M3=3 M08
+; Zyklus zum Gewindebohren M8x1.25
+N43 MCALL CYCLE84(20,0,1,-9,,0.6,5,,1.25,0,500,500,0,1,0,0,5,1.4,,"ISO_METRIC","M8",,1001,1001002)
+; Wiederholter Aufruf des Positionsmusters
+N44 REPEATB Teilkreis ;#SM
+N45 MCALL ; Mehrfachaufruf aus
+; STANDARDZUSTAND HERSTELLEN
+N46 TRAFOOF ; Ausschalten der Stirnflächentransformation
+N47 DIAMON  ; Durchmesserprogrammierung an
+N48 SETMS(1) ; Werkstückspindel ist Hauptspindel
+N49 G0 X300 Z100 ; Rückzug
+N50 M2

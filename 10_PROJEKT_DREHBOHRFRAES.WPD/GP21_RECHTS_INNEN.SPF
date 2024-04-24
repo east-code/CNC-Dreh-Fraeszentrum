@@ -1,0 +1,21 @@
+; GP21_RECHTS_INNEN.SPF
+E_LAB_A_GP2_RECHTS_INNEN: ;#SM Z:8
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X55.982 ; erster Konturpunkt ;*GP*
+G1 X55.249 RND=.4 ;*GP*
+Z-30 X50 RND=.4 ;*GP*
+Z-45 RND=.4 ;*GP*
+X40 ;*GP*
+;CON,V64,2,0.0000,0,0,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:55.249,ASE:270;*GP*;*RO*;*HD*
+;R,RROUND:.4;*GP*;*RO*;*HD*
+;LA,EX:-30,EY:50;*GP*;*RO*;*HD*
+;R,RROUND:.4;*GP*;*RO*;*HD*
+;LL,EX:-45;*GP*;*RO*;*HD*
+;R,RROUND:.4;*GP*;*RO*;*HD*
+;LD,EY:40;*GP*;*RO*;*HD*
+;R,RROUND:.4;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_GP2_RECHTS_INNEN:
+M17

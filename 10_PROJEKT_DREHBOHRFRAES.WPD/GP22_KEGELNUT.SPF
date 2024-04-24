@@ -1,0 +1,16 @@
+;GP22_KEGELNUT.SPF
+E_LAB_A_NUT: ;#SM Z:14
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X30.048 DIAMOF ;*GP*
+G1 Z-40 X22.995 RND=1.5 ;*GP*
+X19 ;*GP*
+;CON,V64,2,0.0000,1,1,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:30.048,ASE:90;*GP*;*RO*;*HD*
+;R,RROUND:0;*GP*;*RO*;*HD*
+;LA,EX:-40,EY:22.995;*GP*;*RO*;*HD*
+;R,RROUND:1.5;*GP*;*RO*;*HD*
+;LD,EY:19;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_NUT:
+M17

@@ -1,0 +1,73 @@
+; Projekt Ritzel, linke Sete: GD22_ADAPTER_LINKS.MPF
+; Rohteildefinition, Rohr
+N1 WORKPIECE(,,,"PIPE",448,2,-75,-45,100,40)
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+; TAV 20.10 Plan- und Längsdrehen
+N3 T="DR_R0.8K95E80"  ; Werkzeug zum Plan- und zum Längsschruppen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=90
+N6 S327 LIMS=4000 M4 M8  ; Schnittbedingungen
+N7 G0 X120 Z2
+; Planschnitt
+N8 CYCLE951(100,1,38,0,38,0,1,2,0,0,12,0,0,0,1,0.35,1,2,1110000)
+N9 G0 X120 Z50           ; Rückzugsbewegung zur Kollisionsvermeidung
+; Längsschnitt
+N10 CYCLE951(100,0,95,-40,95,-40,1,3,0,0,11,2.5,0,0,1,0.35,1,2,1100000)
+N11 G0 X120 Z2              ; Rückzug 
+; TAV 20.40 Schruppschlichten der Innenkontur
+N12 T="DRi_R0.2K91E60"
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N13 TC(1,0,0,2,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N14 B1=0
+N15 S280 LIMS=4000 M4 M8 ; Schnittbedingungen
+N16 G0 Z20
+N17 G0 X35
+; Drehzyklus zum Kegeldrehen
+N18 CYCLE951(40,0,53.4,-38,40,-38,3,2.5,0,0,11,0.4,0,0,1,0.35,2,2,1010000)
+;TAV 20.60 Stossen der Nut auf dem Innenkegel
+N19 T="SN_B12T6.5"  ;Nutenstoßwerkzeug
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_2.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N20 TC(1,0,0,2,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N21 B1=0
+;Schnittbedingungen, Spindel positionieren und Vorschubgeschwindigkeit
+N22 G0 G18 SPOS=0 G94 F6000  
+; Aufruf des Abspanzyklus
+N23 CYCLE62("GP22_KEGELNUT",0,,)
+N24 CYCLE952("Kegelnut",,"",1102331,6000,6000,30,0.079,0.1,0.1,0,0,0.1,0,1,0,0,20,0,80,-78,2,2,,,0,1,,11110000,10012,1100110,1,0,4500)
+N25 G0 X100 ; Rückzug ggf. zum Werkzeugwechsel
+; MANTELFLAECHENBEARBEITUNG
+N26 G54 G17 G90 G94
+N27 SETMS(3)   ; Werkzeugspindel Nr 3 ist Hauptspindel
+N28 SPOS[1]=0  ; Werkstückspindel Nr 1 in Ausgangsposition drehen (optional)
+N29 DIAMOF     ; Durchmesserprogrammierung aus --> Radienprogrammierung
+; TAV 20.70 Bohrungen d10 x 6 auf Umfang gleichmäßig verteilt
+N30 T="BS_D10_VHM" ; Hartmetallbohrer, radiale Orientierung B=90°
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_1.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N31 TC(1,0,0,1,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N32 S3=2710 F813 M3=3 M08
+; Schwenkzyklus Dreheung um Y --> XY-Arbeitsebene auf der Mantelfläche
+N33 CYCLE800(0,"HSP",200000,57,0,0,0,0,90,0,0,0,0,1,100,1)
+N34 TRACYL(95)
+N35 G0 X20 Z100  ; Vorposition
+; Bohrzyklus für mehrere Positionen definieren
+N36 MCALL CYCLE82(100,47.5,2,,-15,1,10,1,21)
+N37 Umfang: HOLES1(20,0,90,0,49.742,6,,0,,,1)
+N38 MCALL ; Mehrfachaufruf aus
+N39 G0 Z100  ; Rückzug
+; STANDARDEINSTELLUNGEN
+N40 CYCLE800(0,"GSP",100000,57,0,0,0,0,0,0,0,0,0,-1,100,1)
+N41 TRAFOOF
+N42 DIAMON    ; Durchmesserprogrammierung an
+N43 SETMS(1)  ; Werkstückspindel ist Hauptspindel
+N44 G0 Z200 ; Rückzug
+N45 M2
+
