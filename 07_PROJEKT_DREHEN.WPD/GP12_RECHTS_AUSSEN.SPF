@@ -1,0 +1,32 @@
+; GP12_RECHTS_AUSSEN.SPF - Kontur
+N200 E_LAB_A_RECHTS_AUSSEN: ;#SM Z:6
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X28 ;*GP*
+G1 X72.211 CHR=2.1  ;*GP*
+Z-28.127 ; Aufmaß zum Breitschlichten ;*GP*
+Z-29.62 X71.411 RND=.6 ;*GP*
+Z-31.29 RND=.6 ;*GP*
+Z-31 X75.541 ;*GP*
+X80 CHR=.5 ;*GP*
+Z-47 RND=2.5 ;*GP*
+X98 CHR=2 ;*GP*
+Z-49 ;*GP*
+;CON,V64,2,0.0000,2,2,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:28,ASE:90;*GP*;*RO*;*HD*
+;R,RROUND:0;*GP*;*RO*;*HD*
+;LU,EY:72.011,ATT:APP(ALLPARA);*GP*;*RO*;*HD*
+;F,LFASE:2;*GP*;*RO*;*HD*
+;LL,EX:-31,DST:.1,ATT:APP(ALLPARA);*GP*;*RO*;*HD*
+;AB,FRM:1,IDX:4;*GP*;*RO*;*HD*
+;LU,EY:80;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LL,EX:-47;*GP*;*RO*;*HD*
+;R,RROUND:2.5;*GP*;*RO*;*HD*
+;LU,EY:98;*GP*;*RO*;*HD*
+;F,LFASE:2;*GP*;*RO*;*HD*
+;LL,DEX:-2;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_RECHTS_AUSSEN:
+N201 M17
+

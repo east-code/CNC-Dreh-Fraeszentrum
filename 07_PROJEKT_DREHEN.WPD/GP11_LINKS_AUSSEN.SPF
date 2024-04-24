@@ -1,0 +1,22 @@
+; GP11_LINKS_AUSSEN - Kontur
+E_LAB_A_LINKS_AUSSEN: ;#SM Z:2
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X77 ;*GP*
+G1 X85 CHR=.5 ;*GP*
+Z-6 RND=.5 ;*GP*
+X98 CHR=.5 ;*GP*
+Z-20 ;*GP*
+;CON,V64,2,0.0000,4,4,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:77,ASE:90;*GP*;*RO*;*HD*
+;R,RROUND:0;*GP*;*RO*;*HD*
+;LU,EY:85;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LL,EX:-6;*GP*;*RO*;*HD*
+;R,RROUND:.5;*GP*;*RO*;*HD*
+;LU,EY:98;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LL,EX:-20;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_LINKS_AUSSEN:
+M17

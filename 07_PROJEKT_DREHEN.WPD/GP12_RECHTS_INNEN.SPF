@@ -1,0 +1,26 @@
+; GP12_RECHTS_INNEN.SPF
+N100 E_LAB_A_RECHTS_INNEN: ;#SM Z:2
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X65.1 ; 1. Konturpunkt mit Fase 0.5 ;*GP*
+G1 X64.1 CHR=.5 ;*GP*
+Z-12 RND=.5 ;*GP*
+X56 RND=.5 ;*GP*
+Z-37 X47.184 RND=.5 ;*GP*
+X34.1 CHR=.5 ;*GP*
+Z-37.5 ;*GP*
+;CON,V64,2,0.0000,5,5,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:64.1,ASE:270;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LL,EX:-12;*GP*;*RO*;*HD*
+;R,RROUND:.5;*GP*;*RO*;*HD*
+;LD,EY:56;*GP*;*RO*;*HD*
+;R,RROUND:.5;*GP*;*RO*;*HD*
+;LA,EX:-37,ASE:190;*GP*;*RO*;*HD*
+;R,RROUND:.5;*GP*;*RO*;*HD*
+;LD,EY:34.1;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LL,EX:-37.5;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_RECHTS_INNEN:
+N101 M17

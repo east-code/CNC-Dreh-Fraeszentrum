@@ -1,0 +1,36 @@
+; Z-Achse (lineare Geometrieachse),
+; SP3-Spindel (angetriebenes Werkzeug),
+; SP2-Spindel (Gegenspindel)
+; Z2-Achse (lineare Achse der Gegenspindel)
+N1 WORKPIECE(,,,"CYLINDER",192,1,-69,-49,100)
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+; . . .
+; Bearbeitung der ersten Seite
+; . . .
+; WERKSTÜCKÜBERGABE
+; Achtung: Ungetesteter Programmabschnitt
+N35 G0 G90 X200 ; Werkzeuge freifahren
+N36 G95 S1=100 S2=100 M1=4 M2=4
+N37 M280                                                 ; Futter der Gegenspindel öffnen
+N38 COUPDEF (S1, S2,1,1,"noc","dv") ; Definition Kopplung
+N39 COUPON (S1,S2,1)                           ; Kopplung ein
+N40 G0 Z2=20                                           ; Gegenspindel heranfahren, Vorposition
+N41 G94 G1 Z2=-4 F1000   ; Greifposition
+N42 G4 F0.5                          ; Verweilzeit
+N43 M281                             ; Futter der Gegenspindel schließen
+N44 G4 F0.5                          ; Verweilzeit
+N45 M240                             ;Futter der Hauptspindel öffnen
+N46 G4 F0.5
+N47 G1 G91 F1000 Z2=300   ; Bearbeitungsposition der zweiten Seite
+N48 COUPOF(S1,S2)               ; Kopplung aus
+N49 COUPDEL(S1,S2)
+N50 M1=5                                ; Spindeln halt
+N51 M2=5
+N52 MIRROR Z0  ; Spiegeln der Bearbeitung, Programmierung in Richtung Z-Minus
+N53 SETMS(2)     ; Gegenspindel ist Masterspindel
+; . . .
+; Bearbeitung der zweiten Seite
+; . . .
+N56 G96 G18 G55 G90 ; Rückseiten-Nullpunktverschiebung (NPV)
+; . . .
+N87 M30

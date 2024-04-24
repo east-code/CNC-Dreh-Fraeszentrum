@@ -1,0 +1,34 @@
+; GP11_LINKS_INNEN - Kontur
+N100 E_LAB_A_LINKS_INNEN: ;#SM Z:6
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X78.05 ; 1. Konturpunkt ;*GP*
+G1 X77.05 CHR=.5 ;*GP*
+Z-6 RND=.5 ;*GP*
+X56.05 CHR=.5 ;*GP*
+Z-15 X50.201 RND=.5 ;*GP*
+X40.2 CHR=.5 ;*GP*
+Z-20 RND=.5 ;*GP*
+X34.1 CHR=.5 ;*GP*
+Z-32 ;*GP*
+X28 ;*GP*
+;CON,V64,2,0.0000,0,0,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:77.05,ASE:270;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LL,EX:-6;*GP*;*RO*;*HD*
+;R,RROUND:.5;*GP*;*RO*;*HD*
+;LD,EY:56.05;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LA,EX:-15,ASE:198;*GP*;*RO*;*HD*
+;R,RROUND:.5;*GP*;*RO*;*HD*
+;LD,EY:40.2;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LL,EX:-20;*GP*;*RO*;*HD*
+;R,RROUND:.5;*GP*;*RO*;*HD*
+;LD,EY:34.1;*GP*;*RO*;*HD*
+;F,LFASE:.5;*GP*;*RO*;*HD*
+;LL,EX:-32;*GP*;*RO*;*HD*
+;LD,EY:28;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_LINKS_INNEN:
+N101 M17
