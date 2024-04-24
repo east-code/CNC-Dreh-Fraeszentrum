@@ -1,0 +1,15 @@
+;GP2_NUT.SPF
+N100 E_LAB_A_NUT: ;#SM Z:12
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z2 X23.4 DIAMOF ; Radienwerte ;*GP*
+G1 Z-32 ;*GP*
+X19 ;*GP*
+;CON,V64,2,0.0000,0,0,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:2,EY:23.4,ASE:90;*GP*;*RO*;*HD*
+;R,RROUND:0;*GP*;*RO*;*HD*
+;LL,EX:-32;*GP*;*RO*;*HD*
+;LD,EY:19;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_NUT:
+N101 M17

@@ -1,0 +1,40 @@
+N100 PROC UP3_NUT(REAL Z_0, REAL Z_1, REAL D_0, REAL t_a, REAL t_2, REAL f_s);
+; UP3_NUT.SPF
+; Parameter
+; Z_0  Anfangskoordinate der Nut in Z-Richtung
+; Z_1  Endkoordinate der Nut in Z-Richtung
+; D_0  Bohrungsdurchmesser der Narbe
+; t_a  Anschnittshöhe  X_0 < D_0/2 + t_a
+; t_2  Nuttiefe bezieht sich auf den Bohrungsdurchmesser D_0
+; f_s  Zustellung in X-Richtung zwischen den Hüben
+; Variablendeklaration
+N101 DEF REAL X_1=0   ; Tiefenkoordinate
+N102 DEF REAL X_0=0   ; Anschnittkoordinate
+N103 DEF REAL X_ist=0 ; Fortlaufende Istkoordinate
+N104 DIAMOF            ;--> Radienprogrammierung
+; Berechnung 
+N105 X_1= (D_0 / 2) + t_2
+N106 X_0= (D_0 / 2) - t_a 
+;Anfangsposition mit Sicherheitsabstand in Z-Richtung
+N107 G0 Z=Z_0 + 2
+N108 G0 X=X_0
+; Nichtabweisschleife für alle Hübe
+N109 X_ist= X_0 ; Anfangswert für X-Koordinate
+N110 REPEAT
+  ; Berechnung
+  N111  X_ist= X_ist + f_s ; Fortlaufende Zustellung
+  ; Alternative zur Begrenzung der Nuttiefe auf Maximalwert
+  N112  if (X_ist> X_1)
+    N113     X_ist=X_1 
+  N114  ENDIF
+  ; Wiederkehrende Bewegung
+  N115  G1 X= X_ist       ; Aktuelle Zustellung
+  N116  G1 Z= Z_1 - 2     ; Hub mit Überlaufweg
+  N117  G1 X= X_ist - 0.5 ; Abheben
+  N118  G1 Z=Z_0+2        ; Rückzug
+; Wenn Bedingung erfüllt, dann Schleife verlassen
+N119 UNTIL X_ist >= X_1
+N120 DIAMON            ; Durchmesserprogrammierung
+; Unterprogrammende
+N121 RET
+N122 M17

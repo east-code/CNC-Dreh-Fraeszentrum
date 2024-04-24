@@ -1,0 +1,41 @@
+; GD3_NABE_UP_NUT.MPF
+; Deklaration des Unterprogramms
+N1 EXTERN UP3_NUT(REAL,REAL,REAL,REAL,REAL,REAL) 
+; Ausgangsteil bereits vorbearbeitet
+N2 WORKPIECE(,,,"CYLINDER",192,0,-30,-20,80)
+N3 G96 G18 G54 G90 ; Grundeinstellungen
+; TAV 40 Zentralbohrung d39,5
+N4 T="BV_D39.5_L50"
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_2.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N5 TC(1,0,0,2,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N6 B1=0
+N7 S159 F0.14 LIMS=8000 M4 M8 ; Schnittbedingungen
+N8 G0 X0
+N9 CYCLE86(50,0,1,-40,,0.6,4,2,3,1,45,1,1,12)
+;TAV 50 Innenlängsdrehen, schlichten d40H7
+N10 T="DFi_R0.2K91E60"
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_2.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N11 TC(1,0,0,2,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N12 B1=0
+N13 S304 LIMS=4000 M4 M8 ; Schnittbedingungen
+N14 CYCLE951(39.5,0,40.01,-32,40.01,-32,3,3,0,0,21,0,0,0,1,0.1,1,2,1110000)
+N15 G0 Z50
+;TAV 60 Innennut stossen
+N16 T="StN_B12T6.5"  ;Nutenstoßwerkzeug
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_2.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N17 TC(1,0,0,2,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N18 B1=0
+;Schnittbedingungen, Spindel positionieren und Vorschubgeschwindigkeit
+N19 G0 C4=0 G94 F6000  
+; Aufruf des Unterprogramms mit Parameterübergabe zur Nutbearbeitung
+N20 UP3_NUT(0,-30,40,1,3.4,0.079)
+; Rückzug und Programmende
+N21 G0 Z5
+N22 G0 X100
+N23 M2
