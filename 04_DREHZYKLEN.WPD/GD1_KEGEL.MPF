@@ -1,0 +1,29 @@
+; GD1_KEGEL.MPF
+; Rohteildefinition
+N1 WORKPIECE(,,,"CYLINDER",192,2,-52,-30,50)
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+; TAV 10 Schruppbearbeitung
+; Werkzeug zum Plan- und zum Längsschruppen
+N3 T="DR_R0.8K95E80"  ; Werkzeug
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=90             ; Radial einschwenken
+N6 S327 LIMS=4000 M4 M8 ; Schnittbedingungen
+; TAV10.10 Stirnfläche planschruppen
+N7 CYCLE951(50,2,-1.6,0,-1.6,0,1,3,0,0,12,0,0,0,1,0.3,0,2,1110000)
+; TAV10.20 Kegel-Umfangskontur schruppen mit Schnittaufteilung
+N8 CYCLE951(50,0,30,-25,50,-25,1,3,1,0,11,0,0,0,1,0.35,2,2,10000)
+; TAV20 Kegel-Umfangskontur schlichten
+N9 T="DF_R0.8K93E55"   ; Drehwerkzeug zum Schlichten
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N10 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N11 B1=90             ; Radial einschwenken
+N12 S385 LIMS=4000 M4 M8 ; Schnittwerte
+N13 CYCLE951(50,0,30,-25,50,-25,1,3,0,0,21,0,0,0,1,0.2,2,2,10000)
+N14 G0 X200 Z50    ; Rückzugsposition
+N15 M2                     ; Programmende
+

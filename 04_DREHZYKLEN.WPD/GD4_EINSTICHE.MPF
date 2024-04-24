@@ -1,0 +1,39 @@
+; GD4_EINSTICHE.MPF 
+; Rohteildefinition
+N1 WORKPIECE(,,,"CYLINDER",192,2,-100,-85,80)
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+;TAV 10 Schruppbearbeitung
+N3 T="DR_R0.8K95E80"  ; Werkzeug zum Plan- und zum Längsschruppen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=90
+N6 S327 LIMS=4000 M4 M8 ; Schnittbedingungen
+; TAV10.10 Stirnfläche planen
+N7 CYCLE951(80,2,-1.6,0,-1.6,0,1,3,0,0,12,0,0,0,1,0.3,0,2,1110000)
+; TAV 10.20 Längsschruppen
+N8 CYCLE951(80,0,75,-80,75,-80,1,3,0,0,11,0,0,0,1,0.3,1,2,1110000)
+; TAV 10.30 Längsschruppen zum Kegel
+N9 CYCLE951(75,0,60,-41,60,-28,1,3,0,0,11,1,0,0,1,0.35,2,2,1010000)
+; TAV 20 Radialeinstiche
+N10 T="DS_R0.4B4T23.3" ; Werkzeug zum Stechen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N11 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N12 B1=90
+N13 S215 LIMS=4000 M4 M8
+; TAV 20.10 Drei Radialeinstiche, Einzelheit A
+N14 CYCLE930(60,-5,4,4,5,,0,0,0,0.5,0,0,0.5,0.2,2,1,10510,,3,-7,0.12,1,0,0,2,1111110)
+N15 G0 X80 ; Rückzug zur Kollisionsvermeidung
+; TAV20.20 Kontureinstich durch zwei aufeinanderfolgende Einstiche
+N16 CYCLE930(63,-48,27,30.464102,75,,0,30,0,3,1.5,1.5,3,0.2,2,1,11510,,1,-7,0.12,1,0,0,2,100)
+N17 CYCLE930(51,-55,9,13.367643,63,,0,20,20,3,1.5,1.5,3,0.2,3,1,11510,,1,-7,0.12,1,0,0,2,100)
+N18 G0 X100 ; Rückzug zur Kollisionsvermeidung
+N19 Z50     ; Achsreihenfolge beachten!
+N20 M2
+
+
+
+
