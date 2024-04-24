@@ -1,0 +1,35 @@
+; ABSAETZE.SPF
+; Mehrere Absätze und Kegeldefinitionen
+N100 E_LAB_A_ABSAETZE: ;#SM Z:4
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X0 ;*GP*
+G1 X20 CHR=2 ;*GP*
+Z-15 RND=1.5 ;*GP*
+Z-28 X35.011 RND=3 ;*GP*
+X45 RND=3 ;*GP*
+Z-42 RND=3 ;*GP*
+Z-47.196 X63 RND=3 ;*GP*
+Z-61 X70 RND=3 ;*GP*
+X80 ;*GP*
+;CON,V64,2,0.0000,0,0,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:0,ASE:90;*GP*;*RO*;*HD*
+;R,RROUND:0;*GP*;*RO*;*HD*
+;LU,EY:20;*GP*;*RO*;*HD*
+;F,LFASE:2;*GP*;*RO*;*HD*
+;LL,EX:-15;*GP*;*RO*;*HD*
+;R,RROUND:1.5;*GP*;*RO*;*HD*
+;LA,EX:-28,ASE:150;*GP*;*RO*;*HD*
+;R,RROUND:3;*GP*;*RO*;*HD*
+;LU,EY:45;*GP*;*RO*;*HD*
+;R,RROUND:3;*GP*;*RO*;*HD*
+;LL,EX:-42;*GP*;*RO*;*HD*
+;R,RROUND:3;*GP*;*RO*;*HD*
+;LA,EY:63,ASE:120;*GP*;*RO*;*HD*
+;R,RROUND:3;*GP*;*RO*;*HD*
+;LA,EX:-61,EY:70;*GP*;*RO*;*HD*
+;R,RROUND:3;*GP*;*RO*;*HD*
+;LU,EY:80;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_ABSAETZE:
+N101 M17

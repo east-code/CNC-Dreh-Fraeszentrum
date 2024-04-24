@@ -1,0 +1,44 @@
+; GP_FREISTICHE
+; Welle mit mehren Absätzen, Freistichen und Schleifzugabe für einen Wellenabsatz
+N100 E_LAB_A_FREISTICHE: ;#SM Z:2
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X0 ;*GP*
+G1 X24 CHR=2 ;*GP*
+Z-14.495 ;*GP*
+Z-18.305 X19.6 RND=1.6 ;*GP*
+Z-25 RND=1.6 ;*GP*
+X50.2 RND=2.5 ;*GP*
+Z-47.5 ;*GP*
+Z-48.62 X49.6 RND=.6 ;*GP*
+Z-50.29 RND=.6 ;*GP*
+Z-50 X53.73 ;*GP*
+X65 RND=1.5 ;*GP*
+Z-72.5 ;*GP*
+Z-73.62 X64.4 RND=.6 ;*GP*
+Z-75 RND=.6 ;*GP*
+X80 CHR=1 ;*GP*
+Z-77 ;*GP*
+;CON,V64,2,0.0000,3,3,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:0,ASE:90;*GP*;*RO*;*HD*
+;R,RROUND:0;*GP*;*RO*;*HD*
+;LU,EY:24;*GP*;*RO*;*HD*
+;F,LFASE:2;*GP*;*RO*;*HD*
+;LL,EX:-25;*GP*;*RO*;*HD*
+;AB,FRM:2,P:3,ALFA:30;*GP*;*RO*;*HD*
+;LU,EY:50.2;*GP*;*RO*;*HD*
+;R,RROUND:2.5;*GP*;*RO*;*HD*
+;LL,EX:-50;*GP*;*RO*;*HD*
+;AB,FRM:1,IDX:4;*GP*;*RO*;*HD*
+;LU,EY:65;*GP*;*RO*;*HD*
+;R,RROUND:1.5;*GP*;*RO*;*HD*
+;LL,EX:-75;*GP*;*RO*;*HD*
+;AB,IDX:4;*GP*;*RO*;*HD*
+;LU,EY:80;*GP*;*RO*;*HD*
+;F,LFASE:1;*GP*;*RO*;*HD*
+;LL,EX:-77;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_FREISTICHE:
+N101 M17
+
+

@@ -1,0 +1,19 @@
+;GP1_ABSATZ.SPF
+;Absatz mit Fase 2x45°
+N100 E_LAB_A_ABSATZ: ;#SM Z:6
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X0 ; Konturanfang ;*GP*
+G1 X56 CHR=2 ;*GP*
+Z-30 ;*GP*
+X60 ;*GP*
+;CON,V64,2,0.0000,0,0,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:0,ASE:90;*GP*;*RO*;*HD*
+;LU,EY:56;*GP*;*RO*;*HD*
+;F,LFASE:2;*GP*;*RO*;*HD*
+;LL,EX:-30;*GP*;*RO*;*HD*
+;LU,EY:60;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_ABSATZ:
+N101 M17 ; Ende des Unterprogramms
+

@@ -1,0 +1,40 @@
+; Hauptprogramm: GD2_ABSATZ_MIT_KONTUR.MPF
+; Rohteildefinition (Zylinder XA=60, ZA=20, ZI=-50 abs, ZB=-35 abs)
+N1 WORKPIECE(,,,"CYLINDER",192,0,-50,-35,60)
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+; TAV 10 Schruppbearbeitung
+N3 T="DR_R0.8K95E80"      ; Werkzeug zum Plan- und zum Längsdrehen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=90
+N6 S320 LIMS=3000 M4 M8 ; Schnittwerte
+; Aktivierung einer Kontur des Hauptprogramms (MPF)
+N7 CYCLE62(,2,"E_LAB_A_ABSATZ","E_LAB_E_ABSATZ")
+; Längsschruppen (SC=1, F=0.3, D=5, ▽,längs, außen, BL=Zylinder,
+; Eingrenzen: ja --> XA=52, XB=64, ZA=2, ZB=-32)
+N8 CYCLE952("schruppen",,"",2101311,0.3,0,0,5,0.1,0.1,0.3,0.3,0.1,0,1,0,0,52,2,64,-32,2,2,,,0,1,,11111000,12,1100110,1,0)
+N9 G0 X200 Z50    ; Rückzugsposition
+N10 M2                     ; Programmende
+
+; Generierte Kontur im Hauptprogramm (MPF)                                        
+; - Änderung der Kontur über -> (Pfeiltaste rechts)      
+N11 E_LAB_A_ABSATZ: ;#SM Z:4
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X0 ; Konturanfang ;*GP*
+G1 X56 CHR=2 ;*GP*
+Z-30 ;*GP*
+X60 ;*GP*
+;CON,V64,2,0.0000,0,0,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:0,ASE:90;*GP*;*RO*;*HD*
+;R,RROUND:0;*GP*;*RO*;*HD*
+;LU,EY:56;*GP*;*RO*;*HD*
+;F,LFASE:2;*GP*;*RO*;*HD*
+;LL,EX:-30;*GP*;*RO*;*HD*
+;LU,EY:60;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_ABSATZ:
+
+

@@ -1,0 +1,33 @@
+; GP_KREISBOEGEN.SPF
+; Nichttangentiale Kreisbögen
+E_LAB_A_KREISBOEGEN: ;#SM Z:12
+;#7__DlgK contour definition begin - Don't change!;*GP*;*RO*;*HD*
+G18 G90 DIAM90;*GP*
+G0 Z0 X0 ; Konturanfang ;*GP*
+G1 X20 CHR=2 ;*GP*
+Z-15 ;*GP*
+G2 Z-28 X35.033 K=AC(-15) I=AC(50) ;*GP*
+G1 X45 ;*GP*
+Z-35 ;*GP*
+G3 Z-45 X65 K=AC(-45) I=AC(45) ;*GP*
+G2 Z-52.5 X70 K=AC(-46.734) I=AC(79.593) RND=2 ;*GP*
+G1 Z-60 ;*GP*
+X80 ;*GP*
+;CON,V64,2,0.0000,7,7,MST:3,2,AX:Z,X,K,I,TRANS:0;*GP*;*RO*;*HD*
+;S,EX:0,EY:0,ASE:90;*GP*;*RO*;*HD*
+;R,RROUND:0;*GP*;*RO*;*HD*
+;LU,EY:20;*GP*;*RO*;*HD*
+;F,LFASE:2;*GP*;*RO*;*HD*
+;LL,EX:-15;*GP*;*RO*;*HD*
+;ACW,DIA:207/0,EX:-28,CX:-15,CY:50;*GP*;*RO*;*HD*
+;LU,EY:45;*GP*;*RO*;*HD*
+;LL,EX:-35;*GP*;*RO*;*HD*
+;ACCW,DIA:0/35,EX:-45,EY:65,RAD:10;*GP*;*RO*;*HD*
+;ACW,DIA:0/235,EX:-52.5,EY:70,RAD:7.5;*GP*;*RO*;*HD*
+;R,RROUND:2;*GP*;*RO*;*HD*
+;LL,EX:-60;*GP*;*RO*;*HD*
+;LU,EY:80;*GP*;*RO*;*HD*
+;#End contour definition end - Don't change!;*GP*;*RO*;*HD*
+E_LAB_E_KREISBOEGEN:
+M17
+
