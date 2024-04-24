@@ -1,0 +1,37 @@
+; GD6_INNENBEARBEITUNG.MPF
+; Bohren und Innendrehen
+; Rohteildefinition
+N1 WORKPIECE(,,,"CYLINDER",192,1,-60,-40,40)
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+;TAV 10 Schruppbearbeitung, Stirnfläche planen mit Fase 1x45°
+N3 T="DR_R0.8K95E80"  ; Werkzeug zum Plan- und zum Längsschruppen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_b1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=90
+N6 S327 LIMS=4000 M4 M8 ; Schnittbedingungen
+N7 CYCLE951(40,2,-1.6,0,-1.6,0,1,3,0,0,12,0,0,1,1,0.3,1,2,1110000)
+N8 G0 X100 Z150 ; ; Rückzugsbewegung zur Kollisionsvermeidung
+; TAV20 Zentralbohrung d20
+N9 T="BV_D20L40"
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1280#1024#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N10 TC(1,0,0,2,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N11 B1=0
+N12 S159 F0.14 LIMS=8000 M4 M8 ; Schnittbedingungen
+N13 G0 X0
+N14 CYCLE86(50,0,1,-40,,0.6,4,2,3,1,45,1,1,12)
+;TAV30 Innenlängsdrehen, schlichten d21
+N15 T="DFi_R0.2K91E60"
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1280#1024#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N16 TC(1,0,0,2,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N17 B1=0
+N18 S304 LIMS=4000 M4 M8 ; Schnittbedingungen
+N19 CYCLE951(20,0,21,-35,21,-35,3,3,0,0,21,2,0,0,1,0.1,1,2,1110000)
+N20 G0 Z50
+N21  X100 ; Rückzug zur Kollisionsvermeidung
+N22 M2
