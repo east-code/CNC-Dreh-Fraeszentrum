@@ -1,0 +1,33 @@
+; GD1_PROGRAMMSTRUKTUR.MPF
+; Fräsen eines Formelementes auf einer Stirnfläche
+; KINEMATIK: Spindelnummern sind während der Programmierung zu beachten!
+; SP1-Spindel (Hauptspindel) 
+; X-Achse (lineare Geometrieachse)
+; Y-Achse (optionale lineare Geometrieachse)
+; Z-Achse (lineare Geometrieachse)
+; SP3-Spindel (angetriebenes Werkzeug)
+; Ausgangsteil bereits fertig gedreht
+N1 WORKPIECE(,,,"CYLINDER",192,0,-40,-20,80)
+N2 G54 G17 G90 G94   ; Grundeinstellungen
+; Schaft-, Bohrnutenfräser ist angetriebenes
+; Werkzeug in der Werkzeugspindel 3
+N3 T="FS_D10"
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_1.png"#1#1#1#1#1#1##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1440#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,1,0,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=0             ; Axiale Werkzeuglage
+N6 S3=630 F75 M3=3 M08 ; Schnittbedingungen
+N7 SETMS(3)  ; Werkzeugspindel Nr 3 wird angetrieben
+N8 SPOS[1]=0   ; Werkstückspindel Nr 1 in Ausgangsposition drehen (optional)
+; Stirnflächentransformation X,C=f(x,y) Bei einer Kinematik ohne Y-Achse!
+N9 TRANSMIT  
+N10 DIAMOF      ;  Durchmesserprogrammierung aus --> Radienprogrammierung
+; . . .
+; Programmkörper --> Zyklen
+;  . . .
+; STANDARDZUSTAND WIEDER HERSTELLEN
+N11 TRAFOOF ; Ausschalten der Stirnflächentransformation
+N12 DIAMON  ; Durchmesserprogrammierung an
+N13 M2   ; Programmende
+
