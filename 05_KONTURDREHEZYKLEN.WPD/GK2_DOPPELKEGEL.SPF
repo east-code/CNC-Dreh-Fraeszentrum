@@ -1,0 +1,7 @@
+; Unterprogramm im G-Code: GK2_DOPPEKLEGEL
+N100 G1 X0 Z0 ; Konturanfang
+N101 G1 X30 Z0 CHR=2 ; Plankontur mit Fase als Übergangselement
+N102 G1 X40 Z-25 RND=6 ; Kegel mit Übergangsradius
+N103 G1 X60 Z-35 RND=3 ; Zweiter Kegel mit Übergangsradius
+N104 G1 Z-37                ; Verfahrweg um Radius hinzuzufügen
+N105 M17 ; Unterprogrammende

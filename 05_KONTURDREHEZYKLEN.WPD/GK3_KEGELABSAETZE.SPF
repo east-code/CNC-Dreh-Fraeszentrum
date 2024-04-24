@@ -1,0 +1,11 @@
+; Unterprogramm: GK_KEGELABSAETZE.SPF (G-Kontur)
+N200 G1 X0 Z0                 ; Konturanfang
+N201 G1 X25 Z0 CHR=2  ; Plankontur mit Fase 2 mm x 45° als Übergangselement
+N202 G1 Z-15 RND=1.5  ; Längsabsatz mit Übergangsradius R=1.5 mm
+N203 G1  Z-28 ANG=150 RNDM=3 ; Kegel mit Neigungswinkel, modales Verrunden an
+N204 G1 X45                  ; X-Absatz
+N205 G1 Z-42                 ; Z-Absatz
+N206 G1 X63 ANG=120          ; Kegel mit Neigungswinkel
+N207 G1 X70 Z-61             ; Kegel mit Zielkoordinaten
+N208 G1 X80 RNDM=0           ; Modales Verrunden aus
+N209 M17                     ; Unterprogrammende

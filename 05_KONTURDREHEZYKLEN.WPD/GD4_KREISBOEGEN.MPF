@@ -1,0 +1,25 @@
+; Hauptprogramm: GD4_KEGELABSAETZE.MPF - Werkstück mit mehren Absätzen
+; Rohteildefinition (XA=80, ZI=-80 abs, ZB=-65 abs)
+N1 WORKPIECE(,,,"CYLINDER",192,2,-80,-65,80)
+; . . .
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+; TAV 10 Schruppbearbeitung
+N3 T="DR_R0.8K95E80"      ; Werkzeug zum Plan- und zum Längsdrehen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=90
+N6 S320 LIMS=3000 M4 M8 ; Schnittwerte
+; TAV10.10 Planschnitt X=80
+N7 CYCLE951(60,2,-1.6,0,-1.6,0,1,3,0,0,12,0,0,0,1,0.2,0,2,1110000)
+; TAV10.20 Schruppen in Längsrichtung mit Fase am Konturanfang
+; Kontur im Unterprogramm, Aktivierung im Hauptprogramm (keine Änderungen des Satzes N7)
+N8 CYCLE62("GK4_KREISBOEGEN",0,,)
+N9 CYCLE952("schruppen",,"",2101311,0.3,0,0,5,0.1,0.1,0.1,0.1,0.1,0,1,0,0,,,,,2,2,,,0,1,,0,12,1100110,1,0)
+; TAV20 Schlichten der Mantelfläche, 
+; (Eingrenzen: Ja, XA=16 abs, XB=82 abs, ZA=0 abs, ZB=-64 abs)
+N10 CYCLE952("schlichten",,"",2101321,0.2,0,0,3,0.1,0.1,0.1,0.1,0.1,0,1,0,0,20,0,82,-64,2,2,,,0,1,,11111000,12,1100110,1,0)
+N11 G0 X200 Z50    ; Rückzugsposition
+N12 M2             ; Programmende
+

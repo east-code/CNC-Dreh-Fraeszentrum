@@ -1,0 +1,13 @@
+; GK5_ABSAETZE.SPF
+; Kontur ohne Freistiche
+N600 G1 X0 Z0  ; Konturanfang
+N601 X24 CHR=2 ; Plankonturelement mit Fase 2 x 45°
+N602 Z-25      ; Längsschnitt
+N603 X50.6 RND=2.5 ; Bund mit Radius und Schleifaufmaß +0.3
+N604 Z-50          ; Längsschnitt mit Schleifaufmaß
+N606 X65 RND=1.5   ; Bund mit Radius
+N607 Z-75          ; Längsschnitt
+N608 X80 CHR=1     ; Bund mif Fase
+N609 Z-78          ; Konturergänzung in Z-Richtung
+N610 M17           ; Unterprogrammende
+

@@ -1,0 +1,14 @@
+; GK4_KREISBOEGEN.SPF (G-Kontur)
+; Kontur mit Kreisbögen
+N300 G1 X0 Z0 ; Konturanfang
+N301 G1 X20 Z0 CHR=2 ; Plankontur mit Fase 2 mm x 45°
+N302 G1 X20 Z-15          ; Längsabsatz
+N303 G2 X35.033 Z-28 I15 K0 ; Kreisbogen im Uhrzeigersinn
+N304 G1 X45 CHF=0.5 ; Flanke
+N305 G1 Z-35                ; Absatz
+N306 G3 X65 Z-45 CR=10  ; Kreisbogen entgegen des Uhrzeigersinns
+N307 G2 X75 Z-52.5 CR=7.5 RND=2  ; Kreisbogen, Uhrzeigersinn mit Übergangsradius
+N308 G1 Z-60 ; Absatz
+N309 G1 X80  ; Flanke
+N310 M17       ; Unterprogrammende
+

@@ -1,0 +1,54 @@
+; G1_KEGEL.MPF
+; Rohteildefinition
+N1 WORKPIECE(,,,"CYLINDER",192,2,-52,-30,50)
+N2 G96 G18 G54 G90 ; Grundeinstellungen
+; TAV 10 Schruppbearbeitung
+N3 T="DR_R0.8K95E80"      ; Werkzeug zum Plan- und zum Längsdrehen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_b1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1=90
+; Schnittbedingungen
+; Schnittgeschwindigkeit, Maximale Drehzahl, Drehrichtung, Kühlmittel
+N6 S327 LIMS=4000 M4 M8 ; Schnittwerte
+; TAV10.10 Planschnitt
+N7 G0 X52 Z0       ; Startpunkt
+N8 G1 X-1.6 F0.3  ; Schnitt
+N9 Z2                     ; Abheben
+N10 G0 X150 Z50    ; Werkzeugwechselpunkt
+; TAV10.20 Längsschruppen mt Schnittaufteilung
+; ap<=3 mm -> 4 Schnitte, Aufmaß dx=0.5 mm
+; Hilfspunkte: (51,25),(45,17.5), (39,10), (33,2.5), (31.0)
+N11 G0 X45 Z1  ; Schnitt 1
+N12 G1 Z-17.5 F0.35
+N13 X51 Z-25
+N14 G0 Z1
+N15 X39          ; Schnitt 2
+N16 G1 Z-10
+N17 X45 Z-17.5
+N18 G0 Z1
+N19 X33         ; Schnitt 3
+N20 G1 Z-2.5
+N21 X39 Z-10
+N22 G0 Z1
+N23 X31         ; Restschnitt 4
+N24 G1 Z0
+N25 X33 Z-2.5
+N26 G0 X150 Z50  ; zum Werkzeugwechselpunkt
+; TAV20 Schlichten des Kegels mit Schneidenradienkorrektur
+N27 T="DF_R0.8K93E55"   ; Drehwerkzeug zum Schlichten
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_b1_2.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N28 TC(1,0,0,2,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N29 B1=90
+N30 S385 LIMS=4000 M4 M8 ; Schnittwerte
+N31 G0 X30 Z2
+N32 G42 G147 DisR=1  ; Schneidenradienkorrektur an und Vorlaufweg
+N33 G1 X30 Z0 F0.2
+N34 G1 X50 Z-25          ; Kegelkontur
+N35 G40 G148 DisR=1 ; Schneidenradienkorrektur aus und Überlaufweg
+N36 G0 X150 Z50         ; Rückzugsposition zum Werkzeugwechselpunkt
+N37 M2                          ; Programmende
+
