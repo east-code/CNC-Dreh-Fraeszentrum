@@ -1,0 +1,43 @@
+; GD1_PROGRAMMSTRUKTUR.MPF
+; KINEMATIK, KOMPLETTVERSION
+; SP1-Spindel (Hauptspindel),
+; X-Achse (lineare Geometrieachse),
+; Y-Achse (lineare Geometrieachse),
+; Z-Achse (lineare Geometrieachse),
+; SP3-Spindel (angetriebenes Werkzeug --> ANG-C1)
+; SP2-Spindel (Gegenspindel)
+; B1-Achse (Schwenkachse um Y --> ANG-B1)
+; - Spinelnummern sind während der Programmierung zu beachten!
+;-------------------------------------
+; Ausgangsteil, Rohteil . . . . .
+N1 WORKPIECE(,,,"CYLINDER", . . ., . . ., . . ., . . ., . . .)
+N2 G54 G19 G90 G94 S
+; TAV . . .  Radial auf der Zylindermantelfläche fräsen
+; Werkzeug
+N3 T=". . . "   ; Werkzeug anwählen
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_c1_1.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N4 TC(1,0,0,1,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N5 B1= 90            ; Radiale Werkzeuglage  
+N6 S3=630 F75 M3=3 M08 ; Schnittwerte
+; An Werkzeugmaschinen mit einer B-Achse --> CYCLE800(...)
+; z. B.: CYCLE800(0,"WSP",300,57,,,,,90,,,,,-1,100,3)
+N7 SETMS(3)      ; Werkzeugspindel Nr 3 wird angetrieben
+N8 SPOS[1]=0    ; Werkstückspindel Nr 1 positionieren
+N9 DIAMOF       ; Durchmesserprogrammierung aus --> Radien
+N10 G0 X. . .        ; Position über der Werkstückoberfläche
+; Schwenkzyklus Drehung um Y --> XY-Arbeitsebene auf der Mantelfläche
+N11 CYCLE800(0,"HSP",200000,57,0,0,0,0,90,0,30,0,0,1,100,1)
+N12 TRACYL(d_WSt)   ; Zylindermanteltransformation ohne Y-Achse, z.B.d_WSt=80 mm
+; . . .
+; Programmkörper  Unterprogramm, Zyklus, zum Beispiel Rechtecktasche
+; . . .
+; STANDARDEINSTELLUNGEN
+N13 CYCLE800(0,"GSP",200000,57,0,0,0,0,0,0,0,0,0,1,100,1)
+N14 G0 X100  Z50  ; Rückzug
+N15 TRAFOOF   ; Ausschalten der Stirnflächentransformation
+N16 SETMS(1)   ; Werkstückspindel Nr 1 wird angetrieben
+N17 DIAMON    ; Durchmesserprogrammierung an
+N18 M2              ; Programmende
+

@@ -1,0 +1,57 @@
+; GD9_GEWINDEBOHR_TRACYL.MPF
+; KINEMATIK
+; SP1-Spindel (Hauptspindel),
+; X-Achse (lineare Geometrieachse),
+; Z-Achse (lineare Geometrieachse),
+; SP3-Spindel (angetriebenes Werkzeug)
+; Spindelnummern sind während der Programmierung zu beachten
+; Ausgangsteil bereits fertig gedreht
+N1 WORKPIECE(,,,"CYLINDER",192,0,-60,-40,80)
+N2 G54 G17 G90 G94
+; Einstellungen für Fräs- und Bohrbearbeitung der Stirnfläche
+N3 SETMS(3)   ; Werkzeugspindel nr 3 ist Hauptspindel
+N4 SPOS[1]=0   ; Werkstückspindel 1 in Ausgangsposition drehen (optional)
+N5 DIAMOF     ; Durchmesserprogrammierung aus --> Radienprogrammierung
+; TAV 40 Kernlochbohrung
+N6 T="BS_D8.5" ; Hartmetallbohrer, radiale Orientierung
+N7 TC(1,0,0,1,90,0)  ; Werkzeugwechsel
+N8 S3=5000 F360 M3=3 M08
+N9 G0 X100 ; Rückzug ggf. zum Werkzeugwechsel
+; Schwenkzyklus: B(Y)=90°
+N10 CYCLE800(0,"HSP",200000,57,0,0,0,0,90,0,0,0,0,1,100,1)
+N11 TRACYL(80)   ; Zylindermanteltransformation
+; Bohrzyklus für mehrere Positionen definieren
+N12 MCALL CYCLE82(100,40,2,,-25,0.6,10,1,11,10000,1,50,5,50)
+; Positionsreihe definieren und Bohren
+N13 Umfang: HOLES1(25,0,90,0,83.733,3,,0,,,1)
+N14 MCALL ; Mehrfachaufruf aus
+;TAV 50 Senken
+N15 T="BSe_D15A90" ; 90°-Senker, HSS
+N16 TC(1,0,0,1,90,0)  ; Werkzeugwechsel
+N17 S3=450 F50 M3=3 M08
+; Zyklus zum Zentrieren hier zum Kegelsenken
+N18 MCALL CYCLE81(100,40,1,11,,0.6,10,1,11)
+; Wiederholter Aufruf des Positionsmusters (--> N913)
+N19 REPEATB Umfang ;#SM
+N20 MCALL ; Mehrfachaufruf aus
+;TAV 60 Gewindebohren
+N21 T="BG_M10" ; Gewindebohrer M10, HSS
+N22 TC(1,0,0,1,90,0)  ; Werkzeugwechsel
+N23 S3=450 F750 M3=3 M08
+; Zyklus zum Gewindebohren M10x1.5
+N24 MCALL CYCLE84(100,40,1,,-20,0.6,5,,1.5,0,500,500,0,1,0,0,5,1.4,,"ISO_METRIC","M10",,1001,1001001)
+; Wiederholter Aufruf des Positionsmusters (--> N13)
+N25 REPEATB Umfang ;#SM
+N26 MCALL ; Mehrfachaufruf aus
+; STANDARDZUSTAND HERSTELLEN
+N27 G0 X-30 Y0 Z100 ; Rückzug
+N28 CYCLE800(0,"GSP",100000,57,0,0,0,0,0,0,0,0,0,-1,100,1)
+N29 TRAFOOF   ; Ausschalten der Stirnflächentransformation
+N30 DIAMON  ; Durchmesserprogrammierung an
+N31 M2       ; Programmende
+
+
+
+
+
+

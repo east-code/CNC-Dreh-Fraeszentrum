@@ -1,0 +1,41 @@
+; GD_Bohrungen_C4.MPF
+; KINEMATIK
+; SP1-Spindel (Hauptspindel) --> C4
+; X-Achse (lineare Geometrieachse),
+; Z-Achse (lineare Geometrieachse),
+; SP3-Spindel (angetriebenes Werkzeug)
+; Ausgangsteil bereits fertig gedreht
+N1 WORKPIECE(,,,"CYLINDER",192,0,-60,-40,80)
+N2 G54 G17 G90 G94 ; Grundeinstellungen
+; Einstellungen für Fräs- und Bohrbearbeitung der Zylindermantelfläche
+N3 SETMS(3)     ; Werkzeugspindel nr 3 ist Hauptspindel
+N4 SPOS[1]=0    ; Werkstückspindel 1 in Ausgangsposition (C4)
+N5 DIAMOF       ; Durchmesserprogrammierung aus --> Radienprogrammierung
+; TAV 40 Bohrung auf der Umfangsfläche
+N6 T="BS_D8.5" ; Hartmetallbohrer, radiale Orientierung
+;NCG#tc#dmg_eqiment_uc_turn_sl.com#TC#*NCG;*RO*;*HD*
+;#" Werkzeugwechsel"#"tc_bc_pos_spindle1_1.png"#1#1#1#1#1#2##1##0#2#4#18#1280203#3#1#"#e5ecf0"#"#e5ecf0"#1#0#"C:/Siemens/SinuTrain/SINUMERIK CNC-SW 840D sl 4.8 SP4/hmi/oem/sinumerik/hmi/"#1#"gm_cycles_ui/lng/dm_gm_cycles_ui_lng"#"01010601"##1920#1080#5#0#273#60#129#21#60#212#5#399#558#279#280##1#1#1#3#5#9#10#"R3"##"36"##"106"#"30"#30#0#0###"1"#"0"#"1"#"0"##"0"#"0"#"0"##"0"#1#"1"#0#""#*NCG;*RO*;*HD*
+N7 TC(1,0,0,1,90,0)  ;Werkzeugwechsel
+;#END#*NCG;*RO*;*HD*
+N8 S3=5000 F360 M3=3 M08  ; Schnittbedingungen
+N9 G0 X100        ; Vorposition über dem Werkstück
+; Schwenkzyklus Drehung um Y --> XY-Arbeitsebene auf der Mantelfläche
+N10 CYCLE800(0,"HSP",200000,57,0,0,0,0,90,0,0,0,40,1,100,1)
+; Bohrzyklus für mehrere Positionen definieren
+N11 MCALL CYCLE82(100,0,2,,-25,0.6,10,1,11,10000,1,50,5,50)
+; Positionen nacheinander anfahren
+N12 C4=0   X25
+N13 C4=120 Z25
+N14 C4=240 Z25
+N15 MCALL ; Mehrfachaufruf aus
+; STANDARDEINSTELLUNGEN
+N16 CYCLE800(0,"GSP",200000,57,0,0,0,0,0,0,0,0,0,1,100,1)
+N17 G0 X100  Z100  ; Rückzug
+N18 DIAMON     ; Durchmesserprogrammierung an
+N19 M2         ; Programmende
+
+
+
+
+
+

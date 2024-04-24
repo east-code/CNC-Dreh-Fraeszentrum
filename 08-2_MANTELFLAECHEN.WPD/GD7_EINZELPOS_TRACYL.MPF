@@ -1,0 +1,39 @@
+; GD7_EINZELPOS_TRACYL.MPF
+; KINEMATIK
+; SP1-Spindel (Hauptspindel),
+; X-Achse (lineare Geometrieachse),
+; Z-Achse (lineare Geometrieachse),
+; SP3-Spindel (angetriebenes Werkzeug)
+; Spinelnummern sind während der Programmierung zu beachten
+; Ausgangsteil bereits fertig gedreht
+N1 WORKPIECE(,,,"CYLINDER",192,0,-60,-40,80)
+N2 G54 G17 G90 G94
+; Einstellungen für Fräs- und Bohrbearbeitung
+N3 SETMS(3)   ; Werkzeugspindel nr 3 ist Hauptspindel
+N4 SPOS[1]=0   ; Werkstückspindel 1 in Ausgangsposition drehen (optional)
+N5 DIAMOF     ; Durchmesserprogrammierung aus --> Radienprogrammierung
+; TAV 40 Bohrungen 3 x auf Umfang
+N6 T="BS_D8.5" ; Hartmetallbohrer, radiale Orientierung
+N7 TC(1,0,0,1,90,0)  ; Werkzeugwechsel
+N8 S3=5000 F360 M3=3 M08
+N9 G0 X100 ; Rückzug
+; Schwenkzyklus: B(Y)=90°
+N10 CYCLE800(0,"HSP",200000,57,0,0,0,0,90,0,0,0,0,1,100,1)
+N11 TRACYL(80)   ; Zylindermanteltransformation
+; Bohrzyklus für mehrere Positionen (MCALL) definieren
+N12 MCALL CYCLE82(100,40,2,,-25,0.6,10,1,11,10000,1,50,5,50)
+;  Einzelpositionen definieren und Bohren
+N13 Zylinder: CYCLE802(111111111,111111111,25,0,25,83.733,25,167.466,,,,,,,,,,,,,0,0,1)
+N14 MCALL    ; Mehrfachaufruf aus
+; STANDARDZUSTAND HERSTELLEN
+N15 G0 X-30 Y0 Z100 ; Rückzug
+N16 CYCLE800(0,"GSP",100000,57,0,0,0,0,0,0,0,0,0,-1,100,1)
+N17 TRAFOOF   ; Ausschalten der Stirnflächentransformation
+N18 DIAMON    ; Durchmesserprogrammierung an
+N19 M2        ; Programmende
+
+
+
+
+
+
